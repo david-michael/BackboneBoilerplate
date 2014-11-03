@@ -9,6 +9,9 @@ window.YeomanBackboneTutorial = {
     init: function () {
         'use strict';
         console.log('Hello from Backbone!');
+        new this.Views.Todos({
+            collection: new this.Collections.Todos()
+        });
     }
 };
 

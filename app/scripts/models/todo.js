@@ -12,14 +12,22 @@ YeomanBackboneTutorial.Models = YeomanBackboneTutorial.Models || {};
         initialize: function() {
         },
 
-        defaults: {
-        },
-
         validate: function(attrs, options) {
         },
 
         parse: function(response, options)  {
             return response;
+        },
+
+        defaults: {
+            title: '',
+            completed: false
+        },
+     
+        toggle: function () {
+            this.save({
+                completed: !this.get('completed')
+            });
         }
     });
 

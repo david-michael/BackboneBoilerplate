@@ -15,11 +15,20 @@
         <!-- endbuild -->
     </head>
     <body>
+    <body>
+        <div class="container">
+            <div class="hero-unit">
+                <h1>'Allo, 'Allo!</h1>
+                <section id="todo-app">
+                    <!-- Where our To Do app will go -->
+                </section>
+            </div>
+        </div>
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-
+<!--
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
@@ -74,7 +83,7 @@
             </div>
 
         </div>
-
+-->
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -90,6 +99,7 @@
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/lodash/dist/lodash.compat.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
         <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
@@ -110,7 +120,6 @@
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/templates.js"></script>
-        <script src="scripts/routes/todo.js"></script>
         <script src="scripts/collections/todos.js"></script>
         <script src="scripts/models/todo.js"></script>
         <script src="scripts/views/todo.js"></script>
