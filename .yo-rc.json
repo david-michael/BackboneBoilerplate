@@ -2,11 +2,11 @@
   "generator-backbone": {
     "appPath": "app",
     "appName": "YeomanBackboneTutorial",
-    "coffee": false,
+    "coffee": true,
     "testFramework": "mocha",
     "templateFramework": "lodash",
     "compassBootstrap": true,
-    "includeRequireJS": false
+    "includeRequireJS": true
   },
   "generator-mocha": {}
 }

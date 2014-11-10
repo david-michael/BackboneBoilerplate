@@ -54,11 +54,11 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>/scripts/templates/*.ejs'
                 ],
                 tasks: ['jst']
-            },
-            test: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js'],
-                tasks: ['test:true']
             }
+            // test: {
+            //     files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js'],
+            //     tasks: ['test:true']
+            // }
         },
         connect: {
             options: {
@@ -127,7 +127,10 @@ module.exports = function (grunt) {
         mocha: {
             all: {
                 options: {
-                    run: true,
+                    log: true,
+                    reporter: 'Spec',
+                    run: false,
+                    timeout: 10000,
                     urls: ['http://localhost:<%= connect.test.options.port %>/index.html']
                 }
             }
@@ -295,7 +298,7 @@ module.exports = function (grunt) {
                 'jst',
                 'compass',
                 'connect:test',
-                'mocha',
+                'mocha'
             ];
 
         if(!isConnected) {
@@ -308,19 +311,20 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', [
-        'clean:dist',
-        'createDefaultTemplate',
-        'jst',
-        'compass:dist',
-        'useminPrepare',
-        'imagemin',
-        'htmlmin',
-        'concat',
-        'cssmin',
-        'uglify',
-        'copy',
-        'rev',
-        'usemin'
+        'clean:dist',    // Clears out your .tmp/ and dist/ folders
+//        'coffee',        // Compiles your CoffeeScript files (if any)
+        'createDefaultTemplate', // Creates a JS file that sets up your JST object
+        'jst',           // Compiles your `scripts/templates/` files
+        'compass:dist',  // Compiles your Sassiness
+        'useminPrepare', // Looks for those <!-- special blocks --> in your HTML
+        'imagemin',      // Optimizes your images!
+        'htmlmin',       // Minifies your HTML files
+        'concat',        // Task used to concatenate your JS and CSS
+        'cssmin',        // Minifies your CSS files
+        'uglify',        // Task used to minify your JS
+        'copy',          // Copies files from .tmp/ and app/ into dist/
+        'rev',           // Creates unique hashes and re-names your new JS/CSS files
+        'usemin'         // Updates the references in your HTML with the new files
     ]);
 
     grunt.registerTask('default', [
