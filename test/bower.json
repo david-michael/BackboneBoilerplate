@@ -1,9 +1,16 @@
 {
-  "name": "yeoman-backbone-tutorial",
-  "private": true,
-  "dependencies": {
-    "chai": "~1.8.0",
-    "mocha": "~1.14.0"
-  },
-  "devDependencies": {}
+    "name": "yeoman-backbone-tutorial",
+    "private": true,
+    "dependencies": {
+        "chai": "~1.8.0",
+        "mocha": "~1.14.0"
+    },
+    "devDependencies": {
+        "sinon": "http://sinonjs.org/releases/sinon-1.9.0.js"
+    },
+    "exportsOverride": {
+        "sinon": {
+            "js": "index.js"
+        }
+    }
 }

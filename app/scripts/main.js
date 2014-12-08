@@ -1,21 +1,16 @@
-/*global YeomanBackboneTutorial, $*/
-
-
-window.YeomanBackboneTutorial = {
-    Models: {},
-    Collections: {},
-    Views: {},
-    Routers: {},
-    init: function () {
-        'use strict';
-        console.log('Hello from Backbone!');
-        new this.Views.Todos({
-            collection: new this.Collections.Todos()
-        });
-    }
-};
-
-$(document).ready(function () {
+/*global $ */
+/*jshint unused:false */
+var app = app || {};
+var ENTER_KEY = 13;
+var ESC_KEY = 27;
+$(document).ready(function() {
     'use strict';
-    YeomanBackboneTutorial.init();
+    $(function() {
+        
+
+        // kick things off by creating the `App`
+
+        new app.AppView();
+
+    });
 });

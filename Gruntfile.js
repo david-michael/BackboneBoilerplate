@@ -284,6 +284,7 @@ module.exports = function (grunt) {
             'createDefaultTemplate',
             'jst',
             'compass:server',
+            'jshint',
             'connect:livereload',
             'open:server',
             'watch'
@@ -312,7 +313,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',    // Clears out your .tmp/ and dist/ folders
-//        'coffee',        // Compiles your CoffeeScript files (if any)
+        // 'coffee',        // Compiles your CoffeeScript files (if any)
         'createDefaultTemplate', // Creates a JS file that sets up your JST object
         'jst',           // Compiles your `scripts/templates/` files
         'compass:dist',  // Compiles your Sassiness
