@@ -26,33 +26,33 @@ var app = app || {};
 
 		// At initialization we bind to the relevant events on the `Todos`
 		// collection, when items are added or changed. Kick things off by
-		// loading any preexisting todos that might be saved in *localStorage*.
+		// loading any preexisting TodosCol that might be saved in *localStorage*.
 		initialize: function () {
-			this.allCheckbox = this.$('#toggle-all')[0];
+			this.allCheckbox = this.$('#toggle-all');
 			this.$input = this.$('#new-todo');
 			this.$footer = this.$('#footer');
 			this.$main = this.$('#main');
 			this.$list = $('#todo-list');
 
-			this.listenTo(app.todos, 'add', this.addOne);
-			this.listenTo(app.todos, 'reset', this.addAll);
-			this.listenTo(app.todos, 'change:completed', this.filterOne);
-			this.listenTo(app.todos, 'filter', this.filterAll);
-			this.listenTo(app.todos, 'all', this.render);
+			this.listenTo(app.TodosCol, 'add', this.addOne);
+			this.listenTo(app.TodosCol, 'reset', this.addAll);
+			this.listenTo(app.TodosCol, 'change:completed', this.filterOne);
+			this.listenTo(app.TodosCol, 'filter', this.filterAll);
+			this.listenTo(app.TodosCol, 'all', this.render);
 
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
-			app.todos.fetch({reset: true});
+			app.TodosCol.fetch({reset: true});
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
-			var completed = app.todos.completed().length;
-			var remaining = app.todos.remaining().length;
+			var completed = app.TodosCol.completed().length;
+			var remaining = app.TodosCol.remaining().length;
 
-			if (app.todos.length) {
+			if (app.TodosCol.length) {
 				this.$main.show();
 				this.$footer.show();
 
@@ -83,7 +83,7 @@ var app = app || {};
 		// Add all items in the **Todos** collection at once.
 		addAll: function () {
 			this.$list.html('');
-			app.todos.each(this.addOne, this);
+			app.TodosCol.each(this.addOne, this);
 		},
 
 		filterOne: function (todo) {
@@ -91,14 +91,14 @@ var app = app || {};
 		},
 
 		filterAll: function () {
-			app.todos.each(this.filterOne, this);
+			app.TodosCol.each(this.filterOne, this);
 		},
 
 		// Generate the attributes for a new Todo item.
 		newAttributes: function () {
 			return {
 				title: this.$input.val().trim(),
-				order: app.todos.nextOrder(),
+				order: app.TodosCol.nextOrder(),
 				completed: false
 			};
 		},
@@ -107,21 +107,21 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.todos.create(this.newAttributes());
+				app.TodosCol.create(this.newAttributes());
 				this.$input.val('');
 			}
 		},
 
 		// Clear all completed todo items, destroying their models.
 		clearCompleted: function () {
-			_.invoke(app.todos.completed(), 'destroy');
+			_.invoke(app.TodosCol.completed(), 'destroy');
 			return false;
 		},
 
 		toggleAllComplete: function () {
 			var completed = this.allCheckbox.checked;
 
-			app.todos.each(function (todo) {
+			app.TodosCol.each(function (todo) {
 				todo.save({
 					completed: completed
 				});
